@@ -118,5 +118,38 @@ namespace SquareEquation
             double resultDelta = sec.delta;
             Assert.Greater(resultDelta, 0);
         }
+
+        [Test]
+        [TestCase(1, -2, 1, "Function with one root")]
+        [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
+        public void CalculateSquareEquation_ExampleForDeltaEqualToZero_ValidMessageAboutRoots(double firstValue, double secondValue, double thirdValue, string expectedMessageText)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            string resultMessageText = sec.message;
+            Assert.AreEqual(expectedMessageText, resultMessageText);
+        }
+
+        [Test]
+        [TestCase(1, -2, 1, 1)]
+        [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
+        public void CalculateSquareEquation_ExampleForDeltaEqualToZero_AmountOfRootsEqualToOne(double firstValue, double secondValue, double thirdValue, int expectedRootsAmount)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            int resultRootCounter = sec.rootCounter;
+            Assert.AreEqual(expectedRootsAmount, resultRootCounter);
+        }
+
+        [Test]
+        [TestCase(1, -2, 1, 0)]
+        [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
+        public void CalculateSquareEquation_ExampleWithDeltaEqualToZero_DeltaEqualToZero(double firstValue, double secondValue, double thirdValue, double expectedDelta)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            double resultDelta = sec.delta;
+            Assert.AreEqual(expectedDelta, resultDelta);
+        }
     } 
 }
