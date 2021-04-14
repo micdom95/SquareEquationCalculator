@@ -151,5 +151,54 @@ namespace SquareEquation
             double resultDelta = sec.delta;
             Assert.AreEqual(expectedDelta, resultDelta);
         }
+
+        [Test]
+        [TestCase(1, -1, 1, "Function without roots")]
+        [TestCase(1, -1, 1, "Function without roots")]
+        [TestCase(1, 0, 1, "Function without roots")]
+        [TestCase(-1, 0, -1, "Function without roots")]
+        [TestCase(1, 1, 1, "Function without roots")]
+        [TestCase(-1, 1, -1, "Function without roots")]
+        [TestCase(-1, -1, -1, "Function without roots")]
+        [Description("Example that check that delta is lower than 0 and doesn't have roots")]
+        public void CalculateSquareEquation_ExampleWithDeltaLowerThanZero_ValidMessageAboutRoots(double firstValue, double secondValue, double thirdValue, string expectedMessage)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            string resultMessage = sec.message;
+            Assert.AreEqual(expectedMessage, resultMessage);
+        }
+
+        [Test]
+        [TestCase(1, -1, 1, 0)]
+        [TestCase(1, 0, 1, 0)]
+        [TestCase(-1, 0, -1, 0)]
+        [TestCase(1, 1, 1, 0)]
+        [TestCase(-1, 1, -1, 0)]
+        [TestCase(-1, -1, -1, 0)]
+        [Description("Example that check that delta is lower than 0 and doesn't have roots")]
+        public void CalculateSquareEquation_ExampleWithDeltaLowerThanZero_AmountOfRootsEqualToZero(double firstValue, double secondValue, double thirdValue, int expectedRootsAmount)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            int resultRootCounter = sec.rootCounter;
+            Assert.AreEqual(expectedRootsAmount, resultRootCounter);
+        }
+
+        [Test]
+        [TestCase(1, -1, 1)]
+        [TestCase(1, 0, 1)]
+        [TestCase(-1, 0, -1)]
+        [TestCase(1, 1, 1)]
+        [TestCase(-1, 1, -1)]
+        [TestCase(-1, -1, -1)]
+        [Description("Example that check that delta is lower than 0")]
+        public void CalculateSquareEquation_ExampleWithDeltaLowerThanZero_DeltaLowerThanZero(double firstValue, double secondValue, double thirdValue)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firstValue, secondValue, thirdValue);
+            double resultDelta = sec.delta;
+            Assert.Less(resultDelta, 0);
+        }
     } 
 }
