@@ -7,10 +7,20 @@ using System.Text;
 namespace SquareEquation
 {
     [TestFixture]
-    [Author("michal.domaradzki@student.wsb.edu.pl")]
     [Category("Math - Square equation")]
     public class SquareEquationCalculatorTests
     {
+        [Test]
+        [TestCase(1,2,3)]
+        [Description("Test prove that delta and denominator are calculated properly")]
+        public void CalculateSquareEquation_CheckDeltaAndDenominatorValue_DeltaAndDenominatorCaluculatedProperly(double firtsValue, double secondValue, double thirdValue)
+        {
+            SquareEquationCalculator sec = new SquareEquationCalculator();
+            sec.CalculateSquareEquation(firtsValue, secondValue, thirdValue);
+            Assert.AreEqual(-8, sec.delta);
+            Assert.AreEqual(2, sec.denominator);
+        }
+        
         [Test]
         [TestCase(0, 0, 0, "Exception: Divided by 0")]
         [TestCase(0, 1, 1, "Exception: Divided by 0")]
@@ -40,7 +50,7 @@ namespace SquareEquation
             double resultMessage = sec.denominator;
             Assert.AreEqual(expectedDenominatorValue, resultMessage);
         }
-
+        
         [Test]
         [TestCase(1, -1, -1, "Function with two roots")]
         [TestCase(1, 0, -1, "Function with two roots")]
@@ -53,7 +63,7 @@ namespace SquareEquation
             string resultMessage = sec.message;
             Assert.AreEqual(expectedMessageText, resultMessage);
         }
-
+        
         [Test]
         [TestCase(1, -1, -1, 2)]
         [TestCase(1, 0, -1, 2)]
@@ -66,7 +76,7 @@ namespace SquareEquation
             int resultRootCounter = sec.rootCounter;
             Assert.AreEqual(expectedAmountOfRoots, resultRootCounter);
         }
-
+        
         [Test]
         [TestCase(1, -1, -1)]
         [TestCase(1, 0, -1)]
@@ -79,7 +89,7 @@ namespace SquareEquation
             double resultDelta = sec.delta;
             Assert.Greater(resultDelta, 0);
         }
-
+        
         [Test]
         [TestCase(-1, -1, 1, "Function with two roots")]
         [TestCase(-1, 0, 1, "Function with two roots")]
@@ -92,7 +102,7 @@ namespace SquareEquation
             string resultMessage = sec.message;
             Assert.AreEqual(expectedMessageText, resultMessage);
         }
-
+        
         [Test]
         [TestCase(-1, -1, 1, 2)]
         [TestCase(-1, 0, 1, 2)]
@@ -105,7 +115,7 @@ namespace SquareEquation
             int resultRootCounter = sec.rootCounter;
             Assert.AreEqual(expectedRootsAmount, resultRootCounter);
         }
-
+        
         [Test]
         [TestCase(-1, -1, 1)]
         [TestCase(-1, 0, 1)]
@@ -118,7 +128,7 @@ namespace SquareEquation
             double resultDelta = sec.delta;
             Assert.Greater(resultDelta, 0);
         }
-
+        
         [Test]
         [TestCase(1, -2, 1, "Function with one root")]
         [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
@@ -129,7 +139,7 @@ namespace SquareEquation
             string resultMessageText = sec.message;
             Assert.AreEqual(expectedMessageText, resultMessageText);
         }
-
+        
         [Test]
         [TestCase(1, -2, 1, 1)]
         [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
@@ -140,7 +150,7 @@ namespace SquareEquation
             int resultRootCounter = sec.rootCounter;
             Assert.AreEqual(expectedRootsAmount, resultRootCounter);
         }
-
+        
         [Test]
         [TestCase(1, -2, 1, 0)]
         [Description("Example that gives oportunity to check that delta is equal to 0 and has one root")]
@@ -151,7 +161,7 @@ namespace SquareEquation
             double resultDelta = sec.delta;
             Assert.AreEqual(expectedDelta, resultDelta);
         }
-
+        
         [Test]
         [TestCase(1, -1, 1, "Function without roots")]
         [TestCase(1, -1, 1, "Function without roots")]
@@ -168,7 +178,7 @@ namespace SquareEquation
             string resultMessage = sec.message;
             Assert.AreEqual(expectedMessage, resultMessage);
         }
-
+        
         [Test]
         [TestCase(1, -1, 1, 0)]
         [TestCase(1, 0, 1, 0)]
@@ -184,7 +194,7 @@ namespace SquareEquation
             int resultRootCounter = sec.rootCounter;
             Assert.AreEqual(expectedRootsAmount, resultRootCounter);
         }
-
+        
         [Test]
         [TestCase(1, -1, 1)]
         [TestCase(1, 0, 1)]

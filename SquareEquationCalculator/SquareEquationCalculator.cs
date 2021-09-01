@@ -9,11 +9,13 @@ namespace SquareEquation
         public string message;
         public int rootCounter;
         public double a, b, c;
-        public double delta, denominator, x1, x2;
+        public double delta, denominator=1, x1, x2;
+        
         public SquareEquationCalculator()
         {
-            delta = -1;
+            
         }
+
         public void CalculateSquareEquation(double a, double b, double c)
         {
             if (a != 0)
